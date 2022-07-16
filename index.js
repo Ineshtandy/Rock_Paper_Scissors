@@ -1,8 +1,9 @@
-let btnEl = document.getElementById("btn-el");
+let manCount = 0;
+let compCount = 0;
+let displayVal = document.querySelector("#display"); 
+let rockEl = document.querySelector("#rock-el");
+rockEl.addEventListener("click",game)
 
-btnEl.addEventListener("click", function(){
-    game();
-})
 
 function computerPlay() {
     let ch = Math.floor(Math.random() * 3);
@@ -20,18 +21,27 @@ function playRound(playerSelection, computerSelection) {
     if(playerSelection.toUpperCase() === computerSelection.toUpperCase()){
         return "draw";
     }else if(computerSelection.toUpperCase() === "PAPER"){
+        compCount++;
         return "You Lose! Paper beats Rock"
     }else if(computerSelection.toUpperCase() === "SCISSORS"){
+        manCount++;
         return "You Win! Rock beats Scissors"
     }
 }
 
-function game(){
-    for(let i = 0;i < 5; i++){
-        let playerSelection = prompt("enter choice - rock, paper,scissors");
-        const computerSelection = computerPlay();
 
-        console.log(playRound(playerSelection, computerSelection));
-    }
+
+function game(){
+    
+        let playerSelection = this.textContent;
+        
+        const computerSelection = computerPlay();
+        
+        displayVal.textContent = playRound(playerSelection, computerSelection);
+        
 }
    
+
+
+
+
