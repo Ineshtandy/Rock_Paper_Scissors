@@ -1,0 +1,14 @@
+body{
+    display: flex;
+    /*flex-direction: column;*/
+    gap: 10px;
+}
+button{
+    font-size: large;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(101, 122, 122);
+    border: none;
+    border-radius: 5px;
+}
+
