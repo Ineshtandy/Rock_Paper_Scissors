@@ -7,11 +7,11 @@ let displayCompScore = document.querySelector("#comp");
 let rockEl = document.querySelector("#rock-el");
 let paperEl = document.querySelector("#paper-el");
 let scissorEl = document.querySelector("#scissor-el");
+let reloadEl = document.querySelector("#reload-el");
 
 rockEl.addEventListener("click",game);
 paperEl.addEventListener("click",game);
 scissorEl.addEventListener("click",game);
-
 
 
 function computerPlay() {
@@ -88,14 +88,28 @@ function playRound(playerSelection, computerSelection) {
 
 
 function game(){
-    
+    if(compCount < 5 && manCount < 5){
         let playerSelection = this.textContent;
         
         const computerSelection = computerPlay();
 
         displayVal.textContent = playRound(playerSelection, computerSelection);
+    }else{
+        if(compCount === 5){
+            displayVal.textContent = "COMP WINS";
+            reloadEl.textContent = "CLICK TO REPLAY";
+            reloadEl.addEventListener("click",reload,false);
+        }else{
+            displayVal.textContent = "MAN WINS";
+            reloadEl.textContent = "CLICK TO REPLAY";
+            reloadEl.addEventListener("click",reload,false);
+        }
         
-        
+    }   
+}
+
+function reload(){
+    reload = location.reload();
 }
    
 
