@@ -1,6 +1,9 @@
 let manCount = 0;
 let compCount = 0;
 let displayVal = document.querySelector("#display"); 
+let displayManScore = document.querySelector("#man"); 
+let displayCompScore = document.querySelector("#comp"); 
+
 let rockEl = document.querySelector("#rock-el");
 let paperEl = document.querySelector("#paper-el");
 let scissorEl = document.querySelector("#scissor-el");
@@ -35,25 +38,48 @@ function playRound(playerSelection, computerSelection) {
     // }
     let P = playerSelection.toUpperCase();
     let C = computerSelection.toUpperCase();
-    if(P === C){ return "draw"};
+
+    if(P === C){
+        displayManScore.textContent = "MAN " + manCount;
+            displayCompScore.textContent = "COMP " + compCount;
+        return "draw";
+    }
     if(P === "ROCK"){
         if(C === "PAPER"){
+            compCount++;
+            displayManScore.textContent = "MAN " + manCount;
+            displayCompScore.textContent = "COMP " + compCount;
             return "You Lose, Paper Beats Rock";
-        }else if(C === "SCISSORS"){
+        }else if(C === "SCISSOR"){
+            manCount++;
+            displayManScore.textContent = "MAN " + manCount;
+            displayCompScore.textContent = "COMP " + compCount;
             return "You Win, Rock Beats Scissors";
         }
     }
     if(P === "PAPER"){
         if(C === "ROCK"){
+            manCount++;
+            displayManScore.textContent = "MAN " + manCount;
+            displayCompScore.textContent = "COMP " + compCount;
             return "You win, Paper Beats Rock";
-        }else if(C === "SCISSORS"){
+        }else if(C === "SCISSOR"){
+            compCount++;
+            displayManScore.textContent = "MAN " + manCount;
+            displayCompScore.textContent = "COMP " + compCount;
             return "You Lose, Scissors Beats Paper";
         }
     }
     if(P === "SCISSOR"){
         if(C === "PAPER"){
+            manCount++;
+            displayManScore.textContent = "MAN " + manCount;
+            displayCompScore.textContent = "COMP " + compCount;
             return "You Win, Scissors Beats Paper";
         }else if(C === "ROCK"){
+            compCount++;
+            displayManScore.textContent = "MAN " + manCount;
+            displayCompScore.textContent = "COMP " + compCount;
             return "You Lose, Rock Beats Scissors";
         }
     }
@@ -66,8 +92,9 @@ function game(){
         let playerSelection = this.textContent;
         
         const computerSelection = computerPlay();
-        
+
         displayVal.textContent = playRound(playerSelection, computerSelection);
+        
         
 }
    
